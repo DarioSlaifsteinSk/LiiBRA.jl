@@ -131,4 +131,3 @@ CellData.Const.D1 = CellData.Const.De*CellData.Neg.ϵ_e^CellData.Neg.De_brug
 CellData.Const.D2 = CellData.Const.De*CellData.Sep.ϵ_e^CellData.Sep.De_brug
 CellData.Const.D3 = CellData.Const.De*CellData.Pos.ϵ_e^CellData.Pos.De_brug
 CellData.Const.Ce_M = size(CellData.Transfer.tfs[1,3],1)
-export Constants, Negative, Positive, Seperator, RealisationAlgorthim, TransferFun, Cell
