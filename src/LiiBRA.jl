@@ -15,10 +15,6 @@ include("Functions/Phi_e.jl")
 include("Functions/Phi_se.jl")
 include("Functions/Simulate.jl")
 include("Methods/CIDRA.jl")
-include("Data/Chen_2020/LG_M50.jl")
-include("Data/Doyle_94/Doyle_94.jl")
-include("Data/Prada_2013/A123.jl")
-include("Data/Xu_2019/Xu2019.jl")
 
 const F, R = faraday(Metric), universal(SI2019) #Faraday Constant / Universal Gas Constant 
 findnearest(A, x) = argmin(abs.(A .- x)) # Find Nearest for SOC initialisation
