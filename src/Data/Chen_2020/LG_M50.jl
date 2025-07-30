@@ -274,6 +274,6 @@ end
     RA::Realisation
     Transfer::TransferFun
 end
-
+export Constants, Negative, Positive, Separator, Realisation, TransferFun, Params
 return Params(Constants(), Negative(), Positive(), Separator(), Realisation(),
               TransferFun())
