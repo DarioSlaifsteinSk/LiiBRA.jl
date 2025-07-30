@@ -2,10 +2,10 @@ module LiiBRA
 
 using UnitSystems, Parameters, LinearAlgebra, FFTW
 using TSVD, Roots, Statistics, Interpolations, JLD2
-export C_e, Flux, C_se, Phi_s, Phi_e, Phi_se, CIDRA
-export flatten_, R, F, Simulate, D_Linear, Construct
-export tuple_len, interp, Spatial!, Realise, HPPC, fh!
-export mag!, findnearest, CC, WLTP
+# export C_e, Flux, C_se, Phi_s, Phi_e, Phi_se, CIDRA
+# export flatten_, R, F, Simulate, D_Linear, Construct
+# export tuple_len, interp, Spatial!, Realise, HPPC, fh!
+# export mag!, findnearest, CC, WLTP
 
 include("Functions/C_e.jl")
 include("Functions/C_se.jl")
@@ -337,6 +337,13 @@ function D_Linear(Cell, ν_neg, ν_pos, σ_eff_Neg, κ_eff_Neg, σ_eff_Pos, κ_e
         D = [D; Dt]
     end
     return D
+end
+# automatically export all functions and types
+# export all
+for n in names(@__MODULE__; all=true)
+    if Base.isidentifier(n) && n ∉ (Symbol(@__MODULE__), :eval, :include)
+        @eval export $n
+    end
 end
 
 end # module
