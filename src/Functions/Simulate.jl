@@ -197,12 +197,17 @@ function Simulate(Cell, Input, Def, Tk, SList, SOC, A₀, B₀, C₀, D₀, t)
              Results.Cseₙ[i+1, Results.Cseₙ[i + 1, :] .> Cell.Neg.cs_max] .= Cell.Neg.cs_max :
              nothing
 
-        Results.Cseₚ[i + 1, :] = (SOCₚ .* Cell.Pos.cs_max .+
-                                  Results.y[i + 1, CsePosInd]) >
-                                 ones(size(Results.Cseₚ, 2)) * Cell.Pos.cs_max ?
-                                 ones(size(Results.Cseₚ, 2)) * Cell.Pos.cs_max :
-                                 (SOCₚ .* Cell.Pos.cs_max .+
-                                  Results.y[i + 1, CsePosInd])
+        # Results.Cseₚ[i + 1, :] = (SOCₚ .* Cell.Pos.cs_max .+
+        #                           Results.y[i + 1, CsePosInd]) >
+        #                          ones(size(Results.Cseₚ, 2)) * Cell.Pos.cs_max ?
+        #                          ones(size(Results.Cseₚ, 2)) * Cell.Pos.cs_max :
+        #                          (SOCₚ .* Cell.Pos.cs_max .+
+        #                           Results.y[i + 1, CsePosInd])
+        Results.Cseₚ[i + 1, :] = SOCₚ .* Cell.Pos.cs_max .+ Results.y[i + 1, CsePosInd]
+        any(Results.Cseₚ[i + 1, :] .> Cell.Pos.cs_max) ?
+             Results.Cseₚ[i+1, Results.Cseₚ[i + 1, :] .> Cell.Pos.cs_max] .= Cell.Pos.cs_max :
+             nothing
+
         Results.Ce[i + 1, :] = @. Cell.Const.ce0 + Results.y[i + 1, CeInd]
 
         # Potentials
