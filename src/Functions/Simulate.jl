@@ -207,8 +207,8 @@ function Simulate(Cell, Input, Def, Tk, SList, SOC, A₀, B₀, C₀, D₀, t)
         any(Results.Cseₚ[i + 1, :] .> Cell.Pos.cs_max) ?
              Results.Cseₚ[i+1, Results.Cseₚ[i + 1, :] .> Cell.Pos.cs_max] .= Cell.Pos.cs_max :
              nothing
-        any(Results.Cseₚ[i + 1, :] .< 0.0) ?
-             Results.Cseₚ[i+1, Results.Cseₚ[i + 1, :] .< 0.0] .= 0.0 :
+        any(Results.Cseₚ[i + 1, :] .< 1.0) ?
+             Results.Cseₚ[i+1, Results.Cseₚ[i + 1, :] .< 1.0] .= 1.0 :
              nothing
 
         Results.Ce[i + 1, :] = @. Cell.Const.ce0 + Results.y[i + 1, CeInd]
