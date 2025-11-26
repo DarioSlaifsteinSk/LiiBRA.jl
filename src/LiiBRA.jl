@@ -84,7 +84,9 @@ function HPPC(Cell, Ŝ::Array, SOC::Float64, λ::Float64, ϕ::Float64, A::Tuple
     Input = [zero(i); ones(10 * i) * λ; zeros(40 * i); ones(10 * i) * ϕ; zeros(40 * i)]
     Tk = ones(size(Input)) * Cell.Const.T #Cell Temperature
     t = 0:(1.0 / i):((length(Input) - 1) / i)
-
+    println(typeof(A))
+    println(typeof(SOC))
+    println(typeof(Ŝ))
     # Simulate Model
     return Simulate(Cell, Input, "Current", Tk, Ŝ, SOC, A, B, C, D, t)
 end
